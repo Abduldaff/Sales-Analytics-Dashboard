@@ -14,6 +14,8 @@ The repository now contains the initial runnable vertical slice:
 
 The dashboard deliberately uses seeded preview data until the ingestion pipeline loads the warehouse. This keeps the UI demonstrable while preserving the API contract that will be backed by aggregate warehouse queries.
 
+A new enhancement in this release adds date-range filtering to the executive dashboard so users can zoom into sales windows and compare performance across specific periods without reloading the page.
+
 ## Quick start
 
 1. Copy `.env.example` to `.env` and replace the development secrets.

@@ -15,6 +15,9 @@ node_modules/
 dist/
 .vite/
 
+# Editor settings
+.vscode/
+
 # Runtime data
 postgres_data/
 redis_data/

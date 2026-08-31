@@ -1,0 +1,151 @@
+product_key,product_sku,product_name,category_key,unit_cost
+1,TEC-001,Nova Technology 1,1,26.42
+2,TEC-002,Apex Technology 2,1,402.33
+3,TEC-003,Apex Technology 3,1,371.6
+4,TEC-004,Apex Technology 4,1,166.11
+5,TEC-005,Vertex Technology 5,1,81.16
+6,TEC-006,Nova Technology 6,1,58.63
+7,TEC-007,Apex Technology 7,1,122.7
+8,TEC-008,Nova Technology 8,1,342.94
+9,TEC-009,Nova Technology 9,1,347.12
+10,TEC-010,Nova Technology 10,1,99.34
+11,TEC-011,Nova Technology 11,1,264.82
+12,TEC-012,Vertex Technology 12,1,314.53
+13,TEC-013,Apex Technology 13,1,364.41
+14,TEC-014,Vertex Technology 14,1,33.14
+15,TEC-015,Vertex Technology 15,1,84.32
+16,TEC-016,Nova Technology 16,1,161.97
+17,TEC-017,Nova Technology 17,1,362.11
+18,TEC-018,Nova Technology 18,1,284.58
+19,TEC-019,Vertex Technology 19,1,392.53
+20,TEC-020,Apex Technology 20,1,30.79
+21,TEC-021,Vertex Technology 21,1,256.0
+22,TEC-022,Nova Technology 22,1,314.64
+23,TEC-023,Nova Technology 23,1,340.92
+24,TEC-024,Vertex Technology 24,1,15.23
+25,TEC-025,Nova Technology 25,1,10.42
+26,TEC-026,Nova Technology 26,1,306.19
+27,TEC-027,Apex Technology 27,1,256.49
+28,TEC-028,Vertex Technology 28,1,395.28
+29,TEC-029,Apex Technology 29,1,148.47
+30,TEC-030,Apex Technology 30,1,91.0
+31,TEC-031,Apex Technology 31,1,144.69
+32,TEC-032,Nova Technology 32,1,297.05
+33,TEC-033,Apex Technology 33,1,363.69
+34,TEC-034,Vertex Technology 34,1,382.4
+35,TEC-035,Vertex Technology 35,1,348.19
+36,TEC-036,Apex Technology 36,1,174.32
+37,TEC-037,Nova Technology 37,1,414.47
+38,TEC-038,Nova Technology 38,1,48.21
+39,TEC-039,Apex Technology 39,1,217.23
+40,TEC-040,Apex Technology 40,1,416.19
+41,TEC-041,Vertex Technology 41,1,72.7
+42,TEC-042,Vertex Technology 42,1,252.71
+43,TEC-043,Nova Technology 43,1,184.07
+44,TEC-044,Apex Technology 44,1,311.22
+45,TEC-045,Vertex Technology 45,1,202.22
+46,TEC-046,Nova Technology 46,1,209.0
+47,TEC-047,Nova Technology 47,1,386.55
+48,TEC-048,Apex Technology 48,1,389.31
+49,TEC-049,Vertex Technology 49,1,318.17
+50,TEC-050,Nova Technology 50,1,69.52
+51,OFF-001,Clear Office Supplies 1,2,358.98
+52,OFF-002,Paperline Office Supplies 2,2,182.29
+53,OFF-003,Draft Office Supplies 3,2,275.8
+54,OFF-004,Clear Office Supplies 4,2,219.69
+55,OFF-005,Paperline Office Supplies 5,2,136.91
+56,OFF-006,Paperline Office Supplies 6,2,345.94
+57,OFF-007,Clear Office Supplies 7,2,131.77
+58,OFF-008,Paperline Office Supplies 8,2,366.58
+59,OFF-009,Paperline Office Supplies 9,2,312.76
+60,OFF-010,Draft Office Supplies 10,2,342.61
+61,OFF-011,Draft Office Supplies 11,2,181.48
+62,OFF-012,Draft Office Supplies 12,2,204.74
+63,OFF-013,Paperline Office Supplies 13,2,321.46
+64,OFF-014,Draft Office Supplies 14,2,408.51
+65,OFF-015,Clear Office Supplies 15,2,301.03
+66,OFF-016,Paperline Office Supplies 16,2,368.3
+67,OFF-017,Clear Office Supplies 17,2,406.79
+68,OFF-018,Paperline Office Supplies 18,2,25.66
+69,OFF-019,Draft Office Supplies 19,2,416.78
+70,OFF-020,Draft Office Supplies 20,2,153.42
+71,OFF-021,Clear Office Supplies 21,2,201.02
+72,OFF-022,Paperline Office Supplies 22,2,61.47
+73,OFF-023,Paperline Office Supplies 23,2,116.17
+74,OFF-024,Paperline Office Supplies 24,2,340.8
+75,OFF-025,Paperline Office Supplies 25,2,185.05
+76,OFF-026,Draft Office Supplies 26,2,227.15
+77,OFF-027,Clear Office Supplies 27,2,346.21
+78,OFF-028,Paperline Office Supplies 28,2,313.2
+79,OFF-029,Clear Office Supplies 29,2,350.44
+80,OFF-030,Paperline Office Supplies 30,2,89.97
+81,OFF-031,Clear Office Supplies 31,2,308.56
+82,OFF-032,Paperline Office Supplies 32,2,43.81
+83,OFF-033,Clear Office Supplies 33,2,22.73
+84,OFF-034,Paperline Office Supplies 34,2,166.26
+85,OFF-035,Draft Office Supplies 35,2,224.29
+86,OFF-036,Clear Office Supplies 36,2,148.45
+87,OFF-037,Paperline Office Supplies 37,2,344.48
+88,OFF-038,Draft Office Supplies 38,2,48.63
+89,OFF-039,Clear Office Supplies 39,2,92.11
+90,OFF-040,Paperline Office Supplies 40,2,209.52
+91,OFF-041,Draft Office Supplies 41,2,296.49
+92,OFF-042,Clear Office Supplies 42,2,327.4
+93,OFF-043,Clear Office Supplies 43,2,292.19
+94,OFF-044,Paperline Office Supplies 44,2,388.92
+95,OFF-045,Draft Office Supplies 45,2,418.84
+96,OFF-046,Paperline Office Supplies 46,2,322.41
+97,OFF-047,Paperline Office Supplies 47,2,209.06
+98,OFF-048,Draft Office Supplies 48,2,191.97
+99,OFF-049,Clear Office Supplies 49,2,13.27
+100,OFF-050,Paperline Office Supplies 50,2,179.76
+101,FUR-001,Form Furniture 1,3,359.64
+102,FUR-002,Studio Furniture 2,3,152.05
+103,FUR-003,Harbor Furniture 3,3,210.74
+104,FUR-004,Harbor Furniture 4,3,376.28
+105,FUR-005,Studio Furniture 5,3,379.18
+106,FUR-006,Form Furniture 6,3,67.71
+107,FUR-007,Harbor Furniture 7,3,254.96
+108,FUR-008,Form Furniture 8,3,189.45
+109,FUR-009,Harbor Furniture 9,3,56.91
+110,FUR-010,Studio Furniture 10,3,229.26
+111,FUR-011,Harbor Furniture 11,3,17.15
+112,FUR-012,Studio Furniture 12,3,157.42
+113,FUR-013,Studio Furniture 13,3,25.29
+114,FUR-014,Form Furniture 14,3,161.38
+115,FUR-015,Studio Furniture 15,3,116.61
+116,FUR-016,Harbor Furniture 16,3,190.66
+117,FUR-017,Studio Furniture 17,3,168.86
+118,FUR-018,Studio Furniture 18,3,184.33
+119,FUR-019,Harbor Furniture 19,3,385.99
+120,FUR-020,Studio Furniture 20,3,30.44
+121,FUR-021,Harbor Furniture 21,3,399.35
+122,FUR-022,Studio Furniture 22,3,409.06
+123,FUR-023,Harbor Furniture 23,3,243.42
+124,FUR-024,Form Furniture 24,3,221.42
+125,FUR-025,Form Furniture 25,3,8.22
+126,FUR-026,Form Furniture 26,3,159.9
+127,FUR-027,Harbor Furniture 27,3,87.83
+128,FUR-028,Studio Furniture 28,3,204.48
+129,FUR-029,Studio Furniture 29,3,174.28
+130,FUR-030,Form Furniture 30,3,80.15
+131,FUR-031,Form Furniture 31,3,344.09
+132,FUR-032,Form Furniture 32,3,55.05
+133,FUR-033,Harbor Furniture 33,3,287.89
+134,FUR-034,Form Furniture 34,3,32.38
+135,FUR-035,Studio Furniture 35,3,37.26
+136,FUR-036,Studio Furniture 36,3,177.4
+137,FUR-037,Studio Furniture 37,3,330.97
+138,FUR-038,Studio Furniture 38,3,145.27
+139,FUR-039,Form Furniture 39,3,211.36
+140,FUR-040,Studio Furniture 40,3,328.35
+141,FUR-041,Harbor Furniture 41,3,277.93
+142,FUR-042,Harbor Furniture 42,3,306.18
+143,FUR-043,Studio Furniture 43,3,26.35
+144,FUR-044,Form Furniture 44,3,414.64
+145,FUR-045,Studio Furniture 45,3,74.7
+146,FUR-046,Studio Furniture 46,3,359.12
+147,FUR-047,Harbor Furniture 47,3,416.47
+148,FUR-048,Harbor Furniture 48,3,22.11
+149,FUR-049,Studio Furniture 49,3,158.06
+150,FUR-050,Harbor Furniture 50,3,126.41

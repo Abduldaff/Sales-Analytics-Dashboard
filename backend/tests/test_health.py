@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
 from sqlalchemy.exc import SQLAlchemyError
 
+from app.core.security import get_current_user
 from app.db.session import get_db
 from app.main import app
 
@@ -20,6 +21,7 @@ def test_dashboard_contract() -> None:
             raise SQLAlchemyError("warehouse unavailable")
 
     app.dependency_overrides[get_db] = lambda: UnavailableDatabase()
+    app.dependency_overrides[get_current_user] = lambda: object()
     response = TestClient(app).get("/api/v1/dashboard/overview?customer=Ava%20Patel")
     app.dependency_overrides.clear()
     assert response.status_code == 200

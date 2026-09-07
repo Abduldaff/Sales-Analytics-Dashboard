@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 from functools import lru_cache
+from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", case_sensitive=False, extra="ignore")
+    model_config = SettingsConfigDict(env_file=Path(__file__).resolve().parents[3] / ".env", case_sensitive=False, extra="ignore")
     app_name: str = "Sales Analytics API"
     api_v1_prefix: str = "/api/v1"
     database_url: str = "postgresql+psycopg://sales_app:change-me-locally@localhost:5432/sales_analytics"

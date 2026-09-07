@@ -32,6 +32,8 @@ class DashboardOverview(BaseModel):
     revenue_trend: List[TrendPoint]
     revenue_by_region: List[BreakdownItem]
     revenue_by_category: List[BreakdownItem]
+    top_customers: List[BreakdownItem]
+    top_products: List[BreakdownItem]
     generated_at: date
 
 

@@ -10,6 +10,12 @@ class AccessToken(BaseModel):
     token_type: str = "bearer"
 
 
+class UserRegistration(BaseModel):
+    email: str
+    full_name: str
+    password: str
+
+
 class CurrentUser(BaseModel):
     email: str
     full_name: str

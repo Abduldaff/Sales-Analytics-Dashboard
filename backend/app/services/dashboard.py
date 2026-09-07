@@ -11,11 +11,24 @@ from app.schemas.dashboard import BreakdownItem, DashboardFilters, DashboardOver
 
 
 def _filters(start_date: Optional[date], end_date: Optional[date], region: Optional[str], category: Optional[str], customer: Optional[str]) -> tuple[str, dict[str, Any]]:
-    return """WHERE (:start_date IS NULL OR d.full_date >= :start_date)
-        AND (:end_date IS NULL OR d.full_date <= :end_date)
-        AND (:region IS NULL OR r.region_name = :region)
-        AND (:category IS NULL OR c.category_name = :category)
-        AND (:customer IS NULL OR cu.customer_name = :customer)""", {"start_date": start_date, "end_date": end_date, "region": region, "category": category, "customer": customer}
+    conditions = ["1 = 1"]
+    parameters: dict[str, Any] = {}
+    if start_date:
+        conditions.append("d.full_date >= :start_date")
+        parameters["start_date"] = start_date
+    if end_date:
+        conditions.append("d.full_date <= :end_date")
+        parameters["end_date"] = end_date
+    if region:
+        conditions.append("r.region_name = :region")
+        parameters["region"] = region
+    if category:
+        conditions.append("c.category_name = :category")
+        parameters["category"] = category
+    if customer:
+        conditions.append("cu.customer_name = :customer")
+        parameters["customer"] = customer
+    return "WHERE " + " AND ".join(conditions), parameters
 
 
 def _joins() -> str:
@@ -47,14 +60,16 @@ def _warehouse_overview(database: Session, start_date: Optional[date], end_date:
     trend_rows = database.execute(text(f"SELECT d.full_date AS date, SUM(s.gross_revenue - s.discount_amount) AS revenue, SUM(s.profit_amount) AS profit {joins} {where} GROUP BY d.full_date ORDER BY d.full_date"), parameters).mappings().all()
     region_rows = database.execute(text(f"SELECT r.region_name AS name, SUM(s.gross_revenue - s.discount_amount) AS value {joins} {where} GROUP BY r.region_name ORDER BY value DESC"), parameters).mappings().all()
     category_rows = database.execute(text(f"SELECT c.category_name AS name, SUM(s.gross_revenue - s.discount_amount) AS value {joins} {where} GROUP BY c.category_name ORDER BY value DESC"), parameters).mappings().all()
-    return DashboardOverview(data_mode="warehouse", generated_at=date.today(), kpis=[KpiMetric(label="Total revenue", value=revenue, display_value=_currency(revenue)), KpiMetric(label="Total profit", value=profit, display_value=_currency(profit)), KpiMetric(label="Profit margin", value=round(profit / revenue * 100, 1) if revenue else 0, display_value=f"{profit / revenue * 100:.1f}%" if revenue else "0.0%"), KpiMetric(label="Orders", value=orders, display_value=f"{orders:,}")], revenue_trend=[TrendPoint(date=row.date, revenue=float(row.revenue), profit=float(row.profit)) for row in trend_rows], revenue_by_region=_breakdowns(region_rows, revenue), revenue_by_category=_breakdowns(category_rows, revenue))
+    customer_rows = database.execute(text(f"SELECT cu.customer_name AS name, SUM(s.gross_revenue - s.discount_amount) AS value {joins} {where} GROUP BY cu.customer_name ORDER BY value DESC LIMIT 8"), parameters).mappings().all()
+    product_rows = database.execute(text(f"SELECT p.product_name AS name, SUM(s.gross_revenue - s.discount_amount) AS value {joins} {where} GROUP BY p.product_name ORDER BY value DESC LIMIT 8"), parameters).mappings().all()
+    return DashboardOverview(data_mode="warehouse", generated_at=date.today(), kpis=[KpiMetric(label="Total revenue", value=revenue, display_value=_currency(revenue)), KpiMetric(label="Total profit", value=profit, display_value=_currency(profit)), KpiMetric(label="Profit margin", value=round(profit / revenue * 100, 1) if revenue else 0, display_value=f"{profit / revenue * 100:.1f}%" if revenue else "0.0%"), KpiMetric(label="Orders", value=orders, display_value=f"{orders:,}")], revenue_trend=[TrendPoint(date=row.date, revenue=float(row.revenue), profit=float(row.profit)) for row in trend_rows], revenue_by_region=_breakdowns(region_rows, revenue), revenue_by_category=_breakdowns(category_rows, revenue), top_customers=_breakdowns(customer_rows, revenue), top_products=_breakdowns(product_rows, revenue))
 
 
 def _preview_overview() -> DashboardOverview:
     today = date.today()
     revenue = [182_400, 201_200, 198_700, 224_500, 231_800, 257_300, 269_900]
     profits = [39_400, 44_100, 42_800, 51_900, 53_200, 60_400, 63_100]
-    return DashboardOverview(data_mode="preview", generated_at=today, kpis=[KpiMetric(label="Total revenue", value=1_565_800, display_value="$1.57M", change_percent=12.8, trend="up"), KpiMetric(label="Total profit", value=355_200, display_value="$355.2K", change_percent=9.4, trend="up"), KpiMetric(label="Profit margin", value=22.7, display_value="22.7%", change_percent=1.6, trend="up"), KpiMetric(label="Orders", value=8_642, display_value="8,642", change_percent=6.3, trend="up")], revenue_trend=[TrendPoint(date=today - timedelta(days=6 - i), revenue=value, profit=profits[i]) for i, value in enumerate(revenue)], revenue_by_region=[BreakdownItem(name="North America", value=626_320, percentage=40), BreakdownItem(name="Europe", value=469_740, percentage=30), BreakdownItem(name="Asia Pacific", value=313_160, percentage=20), BreakdownItem(name="Latin America", value=156_580, percentage=10)], revenue_by_category=[BreakdownItem(name="Technology", value=689_000, percentage=44), BreakdownItem(name="Office", value=469_700, percentage=30), BreakdownItem(name="Furniture", value=407_100, percentage=26)])
+    return DashboardOverview(data_mode="preview", generated_at=today, kpis=[KpiMetric(label="Total revenue", value=1_565_800, display_value="$1.57M", change_percent=12.8, trend="up"), KpiMetric(label="Total profit", value=355_200, display_value="$355.2K", change_percent=9.4, trend="up"), KpiMetric(label="Profit margin", value=22.7, display_value="22.7%", change_percent=1.6, trend="up"), KpiMetric(label="Orders", value=8_642, display_value="8,642", change_percent=6.3, trend="up")], revenue_trend=[TrendPoint(date=today - timedelta(days=6 - i), revenue=value, profit=profits[i]) for i, value in enumerate(revenue)], revenue_by_region=[BreakdownItem(name="North America", value=626_320, percentage=40), BreakdownItem(name="Europe", value=469_740, percentage=30), BreakdownItem(name="Asia Pacific", value=313_160, percentage=20), BreakdownItem(name="Latin America", value=156_580, percentage=10)], revenue_by_category=[BreakdownItem(name="Technology", value=689_000, percentage=44), BreakdownItem(name="Office", value=469_700, percentage=30), BreakdownItem(name="Furniture", value=407_100, percentage=26)], top_customers=[BreakdownItem(name="Ava Patel", value=248_000, percentage=15.8), BreakdownItem(name="Noah Kim", value=211_000, percentage=13.5), BreakdownItem(name="Mia Garcia", value=184_000, percentage=11.8)], top_products=[BreakdownItem(name="Apex Technology 12", value=176_000, percentage=11.2), BreakdownItem(name="Nova Office Supplies 8", value=154_000, percentage=9.8), BreakdownItem(name="Harbor Furniture 21", value=139_000, percentage=8.9)])
 
 
 def get_dashboard_overview(database: Session, start_date: Optional[date], end_date: Optional[date], region: Optional[str], category: Optional[str], customer: Optional[str]) -> DashboardOverview:

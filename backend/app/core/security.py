@@ -14,7 +14,7 @@ from app.core.config import get_settings
 from app.db.models import ApplicationUser, UserRole
 from app.db.session import get_db
 
-password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+password_context = CryptContext(schemes=["pbkdf2_sha256", "bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/token")
 
 

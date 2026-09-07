@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import os
 from pathlib import Path
 
@@ -27,7 +28,10 @@ def load_extracts(directory: Path, replace: bool) -> None:
                 cursor.execute("TRUNCATE TABLE analytics.fact_sales, analytics.dim_salesperson, analytics.dim_customer, analytics.dim_product, analytics.dim_category, analytics.dim_region, analytics.dim_date RESTART IDENTITY CASCADE")
             for table, file_name in TABLE_FILES:
                 with (directory / file_name).open("r", encoding="utf-8") as source:
-                    with cursor.copy(f"COPY analytics.{table} FROM STDIN WITH (FORMAT CSV, HEADER TRUE)") as copy:
+                    columns = next(csv.reader(source))
+                    column_list = ", ".join(columns)
+                    source.seek(0)
+                    with cursor.copy(f"COPY analytics.{table} ({column_list}) FROM STDIN WITH (FORMAT CSV, HEADER TRUE)") as copy:
                         while chunk := source.read(1024 * 1024):
                             copy.write(chunk)
         connection.commit()
